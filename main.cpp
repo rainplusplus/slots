@@ -5,7 +5,7 @@
 
 using namespace std;
 
-double balance = 1000000;
+double balance = 1000;
 vector<char> slot = {'A', 'K', 'Q', 'Q', 'A', 'J', 'J', 'K', 'A'};
 unordered_map<char, double> multiplier;
 
@@ -13,8 +13,8 @@ unordered_map<char, double> multiplier;
 void make_map() {
     multiplier['J'] = 1;
     multiplier['Q'] = 2;
-    multiplier['K'] = 3;
-    multiplier['A'] = 5;
+    multiplier['K'] = 4;
+    multiplier['A'] = 10;
 }
 
 void print_homescreen() {
@@ -102,25 +102,25 @@ void calculate_win() {
     double win = 0;
     // straight across
     if (slot[0] == slot[1] && slot[1] == slot[2]) {
-        win += 5000;
+        win += 5;
         current_mult *= multiplier[slot[0]];
     }
     if (slot[3] == slot[4] && slot[4] == slot[5]) {
-        win += 5000;
+        win += 5;
         current_mult *= multiplier[slot[3]];
     }
     if (slot[6] == slot[7] && slot[7] == slot[8]) {
-        win += 5000;
+        win += 5;
         current_mult *= multiplier[slot[6]];
     }
 
     // diags
     if (slot[0] == slot[4] && slot[4] == slot[8]) {
-        win += 5000;
+        win += 5;
         current_mult *= multiplier[slot[0]];
     }
     if (slot[2] == slot[4] && slot[4] == slot[6]) {
-        win += 5000;
+        win += 5;
         current_mult *= multiplier[slot[2]];
     }
 
@@ -132,7 +132,7 @@ void calculate_win() {
 }
 
 void play() {
-    while (balance >= 10000) {
+    while (balance >= 40) {
         string in;
         getline(cin, in);
         if (in == "q" || in == "quit") {
@@ -140,7 +140,7 @@ void play() {
             break;
         }
         if (in.empty()) {
-            balance -= 10000;
+            balance -= 40;
             spin();
             calculate_win();
         }
